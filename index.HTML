@@ -1,0 +1,61 @@
+<html>
+    
+ <body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyChyT0XRD-TJNt-NiqSm4brTR5Pc8Hes30",
+    authDomain: "th-march-4fa80.firebaseapp.com",
+    projectId: "th-march-4fa80",
+    storageBucket: "th-march-4fa80.appspot.com",
+    messagingSenderId: "671046523123",
+    appId: "1:671046523123:web:c8ffb64bf84f7deb363f86"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+        
+        function writeData() { 
+            firebase.database().ref("Employee").set({ 
+                    name:   document.getElementById ("nameField").value,
+                    phone:   document.getElementById ("numberField").value
+                });
+                getData();
+            }
+
+            function getData() {
+
+            firebase.database().ref("/").once('value', function(snapshot)
+              snapshot.forEach(function(childSnapshot)
+
+            var childKey = childSnapshot.key;
+
+            var childData = childSnapshot.val();
+
+            document.getElementById ("data").innerHTML = childData['name'] + "," childData["name"] + "," childData['age']
+            
+            })
+        }
+    }
+} 
+</script>    
+
+
+<h1>SMV BUILDING PARKING RESERVATION</h1>
+<input type = "text" placeholder="Employee Name" id = "nameField"><br>
+<input type = "text" placeholder="Phone Number" id = "numberField"><br>
+<input type = "text" placeholder="Arrival time" id = "ariTimeField"><br>
+<input type = "text" placeholder="Departure time" id = "depTimeField"><br>
+<input type = "text" placeholder="Reason" id = "reasonField"><br>
+<button onclick="writeData()">Submit </button><br>
+
+<img src="smv.png" alt="company"style="width:800px;height:400px;">
+</body>
+    
+</html>
